@@ -3,11 +3,13 @@ const express = require('express');
 const errorHandler = require('./middleware/errorHandler');
 const prescriptionRouter = require('./routers/prescriptionRouter');
 const labRouter = require('./routers/labRouter');
+const cors = require('cors');
 
 const app = express();
 
-// ─── Middleware ───────────────────────────────────────────────────────────────
-app.use(express.json());
+app.use(cors()); // <--- Movido al inicio de todo
+
+app.use(express.json()); // <--- Dejado uno solo (limpio el duplicado)
 app.use(express.urlencoded({ extended: true }));
 
 // Basic request logger
